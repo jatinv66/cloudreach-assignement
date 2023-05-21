@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PetStore Test Suite">
+    <listeners>
+        <listener
+                class-name="listener.ExtentListeners"/>
+    </listeners>
+    <test name="PetStore Test Suite">
+        <classes>
+            <class name="petstore.FindPetByStatus"></class>
+            <class name="petstore.FindPetById"></class>
+            <class name="petstore.PlaceOrderForPet"></class>
+            <class name="petstore.FindPurchaseOrderById"></class>
+            <class name="petstore.DeletePurchaseOrderById"></class>
+        </classes>
+    </test>
+</suite>
