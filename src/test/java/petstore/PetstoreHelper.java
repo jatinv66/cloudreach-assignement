@@ -22,7 +22,6 @@ public class PetstoreHelper extends BaseTest {
     ReportHelper reportHelper = new ReportHelper();
     JSONObject reqHeaders= new JSONObject();
     JSONObject reqBody= new JSONObject();
-    SoftAssert softAssert = new SoftAssert();
     HelperMethods helperMethods = new HelperMethods();
     String baseURI = "https://petstore.swagger.io/v2/";
 
@@ -84,14 +83,14 @@ public class PetstoreHelper extends BaseTest {
 
     public SoftAssert findPetBySoldStatusAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList responseJsonArray =  response.path("");
         ArrayList<String> presentKeyCheckArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             presentKeyCheckArr.add("["+i+"]."+"status");
         }
-        softAssert = helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response);
+        helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             matchValueArr.add("["+i+"]."+"status=pending");
@@ -101,14 +100,14 @@ public class PetstoreHelper extends BaseTest {
 
     public SoftAssert findPetByAvailableStatusAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList responseJsonArray =  response.path("");
         ArrayList<String> presentKeyCheckArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             presentKeyCheckArr.add("["+i+"]."+"status");
         }
-        softAssert = helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response);
+        helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             matchValueArr.add("["+i+"]."+"status=pending");
@@ -118,82 +117,87 @@ public class PetstoreHelper extends BaseTest {
 
     public SoftAssert findPetByPendingStatusAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList responseJsonArray =  response.path("");
         ArrayList<String> presentKeyCheckArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             presentKeyCheckArr.add("["+i+"]."+"status");
         }
-        softAssert = helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response);
+        helperMethods.verifyKeysIsPresent(presentKeyCheckArr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>();
         for(int i =0 ;i<responseJsonArray.size();i++){
             matchValueArr.add("["+i+"]."+"status=pending");
         }
-        softAssert = helperMethods.matchKeysValueFromResponse(matchValueArr,response);
+        helperMethods.matchKeysValueFromResponse(matchValueArr,response,softAssert);
         return softAssert;
     }
 
     public SoftAssert findPetByIdAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList<String> arr = new ArrayList<>(
                 Arrays.asList(
                         "id"
                 ));
-        softAssert = helperMethods.verifyKeysIsPresent(arr,response);
+        helperMethods.verifyKeysIsPresent(arr,response,softAssert);
         return softAssert;
     }
 
     public SoftAssert placeOrderForPetAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList<String> arr = new ArrayList<>(
                 Arrays.asList(
                         "id",
                         "status"
                 ));
-        softAssert = helperMethods.verifyKeysIsPresent(arr,response);
+        helperMethods.verifyKeysIsPresent(arr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>(
                 Arrays.asList(
                     "status=placed"
                 )
         );
-        softAssert = helperMethods.matchKeysValueFromResponse(matchValueArr,response);
+        helperMethods.matchKeysValueFromResponse(matchValueArr,response,softAssert);
         return softAssert;
     }
 
     public SoftAssert findPurchaseOrderByIdAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList<String> arr = new ArrayList<>(
                 Arrays.asList(
                         "id"
                 ));
-        softAssert = helperMethods.verifyKeysIsPresent(arr,response);
+        helperMethods.verifyKeysIsPresent(arr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>(
                 Arrays.asList(
                         "status=placed",
                         "complete=true"
                 )
         );
-        softAssert = helperMethods.matchKeysValueFromResponse(matchValueArr,response);
+        helperMethods.matchKeysValueFromResponse(matchValueArr,response,softAssert);
         return softAssert;
     }
 
     public SoftAssert deletePurchaseOrderByIdAssertion(Response response,
                                                String statusCode) {
-        softAssert = helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode);
+        SoftAssert softAssert = new SoftAssert();
+        helperMethods.verifyResponseCode(String.valueOf(response.getStatusCode()), statusCode,softAssert);
         ArrayList<String> arr = new ArrayList<>(
                 Arrays.asList(
                         "code"
                 ));
-        softAssert = helperMethods.verifyKeysIsPresent(arr,response);
+        helperMethods.verifyKeysIsPresent(arr,response,softAssert);
         ArrayList<String> matchValueArr = new ArrayList<>(
                 Arrays.asList(
                         "code=200"
                 )
         );
-        softAssert = helperMethods.matchKeysValueFromResponse(matchValueArr,response);
+        helperMethods.matchKeysValueFromResponse(matchValueArr,response,softAssert);
         return softAssert;
     }
 }

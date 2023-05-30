@@ -23,8 +23,7 @@ public class HelperMethods {
         }
         return true;
     }
-    public SoftAssert verifyKeysIsPresent(ArrayList<String> keysArr, Response response){
-        SoftAssert softAssert = new SoftAssert();
+    public void verifyKeysIsPresent(ArrayList<String> keysArr, Response response,SoftAssert sa){
         try {
             ArrayList<String> keyNotPresent = new ArrayList<>();
             boolean flag = true;
@@ -35,16 +34,14 @@ public class HelperMethods {
                 }
             }
             if (!flag) {
-                softAssert.fail("your passes array these keys is not present in response - : " + keyNotPresent);
+                sa.fail("your passes array these keys is not present in response - : " + keyNotPresent);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return softAssert;
     }
 
-    public SoftAssert verifyResponseCode(String statusCode, String listOfStatusCode) {
-        SoftAssert softAssert = new SoftAssert();
+    public void verifyResponseCode(String statusCode, String listOfStatusCode,SoftAssert sa) {
         try {
             boolean flag = false;
             String[] statusCodeToVerify = listOfStatusCode.split(":");
@@ -56,18 +53,16 @@ public class HelperMethods {
             }
 
             if (!flag) {
-                softAssert.fail("Response Do not match!! Expected Value of Response Code " + listOfStatusCode
+                sa.fail("Response Do not match!! Expected Value of Response Code " + listOfStatusCode
                         + " But found "
                         + statusCode);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return softAssert;
     }
 
-    public SoftAssert matchKeysValueFromResponse(ArrayList<String>keysValueArr,Response response){
-        SoftAssert softAssert = new SoftAssert();
+    public void matchKeysValueFromResponse(ArrayList<String>keysValueArr,Response response,SoftAssert sa){
         ArrayList<String> notMatchedKeyValue = new ArrayList<>();
         boolean flag = true;
         for(int i = 0 ;i < keysValueArr.size(); i++){
@@ -78,9 +73,8 @@ public class HelperMethods {
             }
         }
         if(!flag){
-            softAssert.fail("Assertion failed due key is not found or value is not match with response - : "+notMatchedKeyValue);
+            sa.fail("Assertion failed due key is not found or value is not match with response - : "+notMatchedKeyValue);
         }
-        return softAssert;
     }
 
     public Object readDataFromJSONSimpleFile(String path) throws IOException, ParseException {
